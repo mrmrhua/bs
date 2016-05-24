@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Web IM - 登陆</title>
+	<link rel="stylesheet" type="text/css" href="/app/static/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="/app/static/css/default.css">
+	<link rel="stylesheet" type="text/css" href="/app/static/css/styles.css">
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+    <style>
+        #remember{
+            position: relative;
+            right: 23%;
+        }
+        #signup{
+            position: relative;
+            left: 20%;
+        }
+    </style>
+</head>
+<body>
+	<article class="htmleaf-container">
+
+
+
+		<div class="panel-lite">
+		  <div class="thumbur">
+		    <div class="icon-lock"></div>
+		  </div>
+		  <h4>用户登录</h4>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+              <div class="form-group">
+                  {{ form.UserName(required="required",class='form-control') }}
+                  {{ form.UserName.label(class="form-label") }}
+              </div>
+              <div class="form-group">
+                 {{ form.Passwd(type="password",required="required" ,class="form-control") }}
+                  {{ form.Passwd.label(class="form-label") }}
+              </div><a href="#" id="remember">忘记密码 ?  </a>
+               <a href="#" id="signup">账户注册  </a>
+             {{ form.SubmitBtn(class="floating-btn") }}
+    {#		   <button class="floating-btn"><i class="icon-arrow"></i></button>#}
+            </form>
+            </div>
+
+	
+	</article>
+	
+</body>
+</html>
