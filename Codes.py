@@ -45,8 +45,9 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.UserName.data).first()
-        if user.passwd == form.Passwd.data:
+        if user.passwd == form.Passwd.data: #登陆成功
         #session['username'] = form.UserName.data
+
             return redirect(url_for('hello_world'))
         else:
             return "passwd error"
