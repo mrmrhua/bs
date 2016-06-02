@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="../../static/materialize-v0.97.0/materialize/css/materialize.min.css" MEDIA="SCREEN,projection" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <style>
+        html{
+            min-height: 100%;
+            height: 100%;
+        }
+        body{
+            height: 100%;
+        }
+        .container{
+            height: 100%;;
+        }
+        #therow{
+            height: 90%;
+        }
+        .profile{
+            margin-top: 15%;
+        }
+        .settings {
+            display: inline-block;
+            position: relative;
+            left: 45%;
+        }
+        .boarder{
+            margin-top: 5%;
+            height:90%;
+        }
+
+        .messages{
+            height: 60%;
+        }
+
+       .fullheight {
+            height: 100%;
+        }
+       .sender{
+           padding: 0;
+           height: 25%;
+       }
+        #inputarea{
+            height: 100px;
+        }
+        #sendbutton{
+            height: 80px;
+        }
+
+
+    </style>
+    <title>Web IM</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row" id="therow">
+            <div class="col s3 fullheight">
+                <div class="profile card orange lighten-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">{{ user.Nickname }}
+                        </span>
+                        <div class="settings">
+                            <a href="#"><i id="infoset" class="mdi-action-settings white-text" ></i></a>
+                        </div>
+
+                    </div>
+                </div>
+               <div id="friendlist">
+                     <ul class="collection collapsible" data-collapsible="accordion">
+                        <li class="collection-item orange lighten-1 white-text">好友列表
+                            <i id="infoset" class="mdi-social-group white-text" ></i>
+                            <i id="infoset" class="mdi-social-group-add white-text" ></i>
+                        </li>
+
+                         {%  for group in user.mygroup.all() %}
+                         <li>
+                           <div class="collapsible-header">{{ group.group_name }} ({{ group.group_size }})</div>
+                              {% if group.member.first() %}
+                                    {% for member in group.member.all() %}
+                                        <div class="collapsible-body"><p>{{member.who.Nickname}}</p></div>
+                                    {% endfor %}
+                             {% endif %}
+                         </li>
+                        {% endfor %}
+                     </ul>
+                </div>
+            </div>
+            <div class="col s9 boarder" id="mainwin">
+                    <div class="namebox card-panel cyan lighten-1 center-align">
+                        sb's name
+                    </div>
+                    <div class="messages card cyan lighten-1">
+                        messages
+                    </div>
+                    <div class="sender">
+                        <div class="input-field col s9" id="inputarea">
+                            <i class="mdi-editor-mode-edit prefix"></i>
+                            <textarea id="icon_prefix2" class="materialize-textarea" placeholder="请输入内容..."></textarea>
+                        </div>
+                        <div class="card orange lighten-1 col s3" id="sendbutton">
+                            dfa
+                        </div>
+
+                    </div>
+                </div>
+            <div class="col s9 boarder" id="infoinput">
+
+                <div class="input-field">
+                    <input id="nickname" type="text" class="validate" placeholder="{{ user.Nickname }}">
+                    <label for="nickname">昵称</label>
+                </div>
+                <div class="input-field">
+                    <input id="email" type="text" class="validate" placeholder="{{ user.email }}">
+                    <label for="email">email</label>
+                </div>
+                <div class="input-field">
+                    <input id="password" type="text" class="validate"">
+                    <label for="password">修改密码</label>
+                </div>
+                 <div class="input-field">
+                    <input id="password2" type="text" class="validate"">
+                    <label for="password2">重复密码</label>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="mdi-content-send right"></i>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+     <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+     <script type="text/javascript" src="../../static/materialize-v0.97.0/materialize/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#infoinput').hide();
+            $('.collapsible').collapsible({
+       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+     });
+            $('#infoset').click(function () {
+                $('#mainwin').hide();
+                $('#infoinput').slideToggle();
+            })
+            $('')
+
+        });
+    </script>
+</body>
+</html>

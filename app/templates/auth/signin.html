@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Web IM - 注册</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('auth.static',filename='css/default.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('auth.static', filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href='{{ url_for('auth.static', filename='css/normalize.css') }}'>
+
+    <title>Title</title>
+</head>
+<body>
+    <article class="htmleaf-container">
+        {% for message in get_flashed_messages() %}
+{#        <div class="container">#}
+{#            <div class="alert">#}
+{#                <!--<button type="button" class=></button>-->#}
+{#                {{ message }}#}
+{#            </div>#}
+{#        </div>#}
+        {% endfor %}
+		<div class="panel-lite">
+            <h4>注册</h4>
+            <form method="post">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.Username(required="required",class='form-control') }}
+                    {{ form.Username.label(class="form-label") }}
+                </div>
+                <div class="form-group">
+                    {{ form.Passwd(type="password",required="required" ,class="form-control") }}
+                    {{ form.Passwd.label(class="form-label") }}
+                </div>
+                <div class="form-group">
+                   {{ form.Passwdrepeat(type="password",required="required" ,class="form-control") }}
+                   {{ form.Passwdrepeat.label(class="form-label") }}
+                </div>
+                <div class="form-group">
+                    {{ form.Email(required="required",class='form-control') }}
+                    {{ form.Email.label(class="form-label") }}
+                </div>
+                {{ form.SubmitBtn(class="floating-btn") }}
+            </form>
+            </div><a href="{{ url_for('auth.login') }}" id="remember">返回  </a></div>
+
+		  <!--<div class="thumbur">
+		    <div class="icon-lock"></div>
+		  </div>-->
+
+
+	</article>
+
+</body>
+</html>
