@@ -130,7 +130,7 @@
             </div>
         </div>
     </div>
-
+    <script src="//cdn.bootcss.com/socket.io/1.4.6/socket.io.js"></script>
      <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
      <script type="text/javascript" src="../../static/materialize-v0.97.0/materialize/js/materialize.min.js"></script>
     <script type="text/javascript">
@@ -147,5 +147,18 @@
 
         });
     </script>
+
+<script type="text/javascript" charset="utf-8">
+    var socket =io.connect();   //初始化,把SOCKETIO连接上服务器
+     console.log('+++server!\n');
+    socket.on('my response',function (msg) {
+              console.log(msg.data);
+    })
+
+    socket.on('connect', function() {  //CONNECT⌚用户事件名
+         console.log('Client connected to  server!');
+        socket.emit('message', {data: 'I\'m connected!'});  //MESSAGE 服务器上的事件名
+    });
+</script>
 </body>
 </html>
